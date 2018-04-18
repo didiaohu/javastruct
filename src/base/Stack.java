@@ -33,7 +33,7 @@ public class Stack<Item> {
 			if(!item.equals("-"))
 				s.push(item);
 			else if(!s.isEmpty()) StdOut.print(s.pop() + " ");
-			StdOut.println("(" + s.size() + " left on stack)");
 		}
+		StdOut.println("(" + s.size() + " left on stack)");
 	}
 }
