@@ -108,14 +108,16 @@ public class BST<Key extends Comparable<Key>, Value> {
         if      (cmp < 0) x.left  = delete(x.left,  key);
         else if (cmp > 0) x.right = delete(x.right, key);
         else { 
-            if (x.right == null) return x.left;
-            if (x.left  == null) return x.right;
+            if (x.right == null) return x.left;  // 一个或无子结点情况
+            if (x.left  == null) return x.right;  // 一个或无子结点情况
+            
+            // 两个子结点情况
             Node t = x;
             x = min(t.right);
             x.right = deleteMin(t.right);
             x.left = t.left;
         } 
-        x.size = size(x.left) + size(x.right) + 1;
+        x.size = size(x.left) + size(x.right) + 1; // 更新结点计数器
         return x;
     }
 
