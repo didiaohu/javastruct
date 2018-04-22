@@ -1,9 +1,11 @@
 package base;
 
+import java.util.Iterator;
+
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class Queue<Item> {
+public class Queue<Item> implements Iterable<Item>{
 	private Node first; // 指向最早添加的结点的链接
 	private Node last;  // 指向最近添加的结点的链接
 	private int N;  // 队列中的元素数量
@@ -29,6 +31,22 @@ public class Queue<Item> {
 		N--;
 		return item;
 	}
+	public Iterator<Item> iterator()  {
+        return new ListIterator();  
+    }
+
+    private class ListIterator implements Iterator<Item> {
+        private Node current = first;
+
+        public boolean hasNext()  { return current != null;                     }
+        public void remove()      {  }
+
+        public Item next() {
+            Item item = current.item;
+            current = current.next; 
+            return item;
+        }
+    }
 	public static void main(String[] args) { 
 		// 创建一个队列并操作字符串入队或出列
 		Queue<String> q = new Queue<String>();
@@ -40,4 +58,5 @@ public class Queue<Item> {
 		}
 		StdOut.println("(" + q.size() + " left on queue)");
 	}
+
 }
