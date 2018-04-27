@@ -4,9 +4,9 @@ import base.Queue;
 import base.Stack;
 
 public class BreadthFirstPaths {
-	private boolean[] marked;
-	private int[] edgeTo;
-	private final int s;
+	private boolean[] marked;   // 到达该顶点的最短路径已知？
+	private int[] edgeTo;   // 到达该顶点的已知路径上的最后一个顶点
+	private final int s;    // 起点
 	
 	public BreadthFirstPaths(Graph G, int s){
 		marked = new boolean[G.V()];
@@ -17,15 +17,15 @@ public class BreadthFirstPaths {
 	
 	private void bfs(Graph G, int s){
 		Queue<Integer> queue = new Queue<Integer>();
-		marked[s] = true;
-		queue.enqueue(s);
+		marked[s] = true;    // 标记起点
+		queue.enqueue(s);    // 将它加入队列
 		while(!queue.isEmpty()){
-			int v = queue.dequeue();
+			int v = queue.dequeue();    // 从队列中删去下一个顶点
 			for(int w : G.adj(v)){
-				if(!marked[w]){
-					edgeTo[w] = v;
-					marked[w] = true;
-					queue.enqueue(w);
+				if(!marked[w]){     
+					edgeTo[w] = v;     // 对于每个未被标记的相邻顶点
+					marked[w] = true;  // 标记它，因为最短路径已知
+					queue.enqueue(w);  // 并将它添加到队列中
 				}
 			}
 		}
