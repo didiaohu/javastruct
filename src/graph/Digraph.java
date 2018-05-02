@@ -44,9 +44,20 @@ public class Digraph {
 				R.addEdge(w, v);
 		return R;
 	}
+	public String toString() {  // 将图用字符串来表示
+        StringBuilder s = new StringBuilder();
+        s.append(V + " vertices, " + E + " edges ");
+        for (int v = 0; v < V; v++) {
+            s.append(String.format("%d: ", v));
+            for (int w : adj[v]) {
+                s.append(String.format("%d ", w));
+            }
+        }
+        return s.toString();
+    }
 	public static void main(String[] args) {
-        In in = new In();
+		In in = new In(args[0]);
         Digraph G = new Digraph(in);
-        StdOut.println(G);
+        StdOut.println(G);   // 默认调用了 toString() 
     }
 }
