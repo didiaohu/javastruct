@@ -2,10 +2,12 @@ package graph;
 
 import base.Queue;
 import base.Stack;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class BreadthFirstPaths {
-	private boolean[] marked;   // 到达该顶点的最短路径已知？
-	private int[] edgeTo;   // 到达该顶点的已知路径上的最后一个顶点
+	private boolean[] marked;   
+	private int[] edgeTo;   
 	private final int s;    // 起点
 	
 	public BreadthFirstPaths(Graph G, int s){
@@ -23,8 +25,8 @@ public class BreadthFirstPaths {
 			int v = queue.dequeue();    // 从队列中删去下一个顶点
 			for(int w : G.adj(v)){
 				if(!marked[w]){     
-					edgeTo[w] = v;     // 对于每个未被标记的相邻顶点
-					marked[w] = true;  // 标记它，因为最短路径已知
+					edgeTo[w] = v;     
+					marked[w] = true;  // 标记它
 					queue.enqueue(w);  // 并将它添加到队列中
 				}
 			}
@@ -43,5 +45,22 @@ public class BreadthFirstPaths {
 		}
 		path.push(s);
 		return path;
+	}
+	public static void main(String[] args) {
+		In in = new In();
+		Graph G = new Graph(new In());
+		int s = 0;
+		BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
+		StdOut.println("输出起点 "+s+" 到各个顶点路径：");
+		for (int v = 0; v < G.V(); v++) {	
+			if (bfs.hasPathTo(v)) {
+				StdOut.printf("%d to %d:  ", s, v);
+				for(int x : bfs.pathTo(v)) {
+					if (x == s) StdOut.print(x);
+                    else        StdOut.print("-" + x);
+				}
+				StdOut.println();
+			}
+		}
 	}
 }

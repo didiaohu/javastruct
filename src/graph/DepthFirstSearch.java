@@ -18,22 +18,11 @@ public class DepthFirstSearch {
 			if(!marked[w]) dfs(G, w);
 	}
 	
-	public boolean marked(int w) {
+	public boolean marked(int w) {  // w 与起点 s 连通吗
 		return marked[w];
 	}
 	
 	public int count() {
 		return count;
-	}
-	
-	public static void main(String[] args) {
-		Graph G = new Graph(new In());
-		int s = 0; // 指定起点 s 为 0
-		DepthFirstSearch dfs = new DepthFirstSearch(G, s);
-		StdOut.println("遍历所有顶点，结果如下：");
-		for (int v = 0; v < G.V(); v++) {
-            if (dfs.marked(v))
-                StdOut.print(v + " ");
-        }
 	}
 }	
