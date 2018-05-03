@@ -1,6 +1,8 @@
 package graph;
 
 import base.Stack;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class DirectedCycle {
 	private boolean[] marked;
@@ -22,7 +24,8 @@ public class DirectedCycle {
 			if(this.hasCycle()) return;
 			else if(!marked[w])
 			{ edgeTo[w] = v; dfs(G, w);}
-			else if(onStack[w]) {
+			else if(onStack[w]) { // 检测到了有向环
+				// cycle 保存环内的所有顶点
 				cycle = new Stack<Integer>();
 				for(int x = v; x!=w; x=edgeTo[x])
 					cycle.push(x);
@@ -38,4 +41,17 @@ public class DirectedCycle {
 	public Iterable<Integer> cycle(){
 		return cycle;
 	}
+	public static void main(String[] args) {
+        Digraph G = new Digraph(new In());
+        DirectedCycle finder = new DirectedCycle(G);
+        if (finder.hasCycle()) {
+            StdOut.print("Directed cycle: ");
+            for (int v : finder.cycle()) {
+                StdOut.print(v + " ");
+            }
+            StdOut.println();
+        }else {
+            StdOut.println("No directed cycle");
+        }
+    }
 }
