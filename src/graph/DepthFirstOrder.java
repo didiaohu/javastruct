@@ -2,6 +2,8 @@ package graph;
 
 import base.Queue;
 import base.Stack;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class DepthFirstOrder {
 	private boolean[] marked;   
@@ -36,4 +38,31 @@ public class DepthFirstOrder {
 	public Iterable<Integer> reversePost(){
 		return reversePost;
 	}
+	public static void main(String[] args) {
+        In in = new In();
+        Digraph G = new Digraph(in);
+
+        DepthFirstOrder dfs = new DepthFirstOrder(G);
+        StdOut.println("--------------");
+
+        StdOut.print("Preorder:  ");
+        for (int v : dfs.pre()) {
+            StdOut.print(v + " ");
+        }
+        StdOut.println();
+
+        StdOut.print("Postorder: ");
+        for (int v : dfs.post()) {
+            StdOut.print(v + " ");
+        }
+        StdOut.println();
+
+        StdOut.print("Reverse postorder: ");
+        for (int v : dfs.reversePost()) {
+            StdOut.print(v + " ");
+        }
+        StdOut.println();
+
+
+    }
 }
