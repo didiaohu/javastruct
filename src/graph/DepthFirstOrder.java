@@ -62,7 +62,5 @@ public class DepthFirstOrder {
             StdOut.print(v + " ");
         }
         StdOut.println();
-
-
     }
 }
