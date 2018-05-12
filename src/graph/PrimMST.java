@@ -16,7 +16,6 @@ public class PrimMST {
 		for(int v = 0; v < G.V(); v++)
 			distTo[v] = Double.POSITIVE_INFINITY;
 		pq = new IndexMinPQ<Double>(G.V());
-		
 		distTo[0] = 0.0;
 		pq.insert(0, 0.0);   // 用顶点 0 和权重 0 初始化 pq
 		while(!pq.isEmpty())
