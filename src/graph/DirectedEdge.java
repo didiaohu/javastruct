@@ -13,10 +13,10 @@ public class DirectedEdge {
 	public double weight() {
 		return weight;
 	}
-	public int from() {
+	public int from() {    // 指出这条边的顶点
 		return v;
 	}
-	public int to() {
+	public int to() {      // 这条边指向的顶点
 		return w;
 	}
 	public String toString() {
